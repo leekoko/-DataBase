@@ -1,17 +1,17 @@
 # MySql的基础  
 
-### 1.环境开启        
+## 1.环境开启
 
 1. 启动mysql服务  
 2. 使用navicat来登录mysql  
 
-### 2.基础语法  
+## 2.基础语法
 
 1. 创建数据库：``create database databaseName;``  
 2. 删除数据库：``drop database databaseName;``  
 3. 创建数据表：``create table t3(a1 double, a2 float not null)``
 
-### 3.Mysql数据类型  
+## 3.Mysql数据类型
 
 1. 整数，int  
 2. 小数，decimal(定点数)，float4，double8  
@@ -23,7 +23,7 @@
 
 ![p5](../img/p5.png)  
 
-### 4.数据库设计步骤  
+## 4.数据库设计步骤
 
 #### 1.数据分析    
 
@@ -45,7 +45,7 @@
 
 #### 3.详细设计      
 
-### 5.约束    
+## 5.约束  
 
 保证数据的正确  
 
@@ -71,7 +71,9 @@
 
 （自增列：保证实体完整性``gno int not null AUTO_NCREMENT``）  
 
-### 6.数据表管理  
+## 6.数据表管理  
+
+### 1.查看数据表  
 
 #### 1.查看数据表的基本结构    
 
@@ -81,7 +83,7 @@
 
 ``show create table table_name``可以查看创建表的sql语句  
 
-### 7.修改数据表  
+### 2.修改数据表  
 
 #### 1.修改表名  
 
@@ -89,11 +91,63 @@
 
 #### 2.修改字段名  
 
-``alert table table_name change old_name new_name new_type``  
+``alert table table_name CHANGE old_name new_name new_type``  
 
-  
+#### 3.修改字段数据类型  
 
-  
+``alert table table_name MODIFY col_name new_type``  
+
+  ### 3.字段操作  
+
+#### 1.添加字段    
+
+``alert table table_name ADD new_col_name new_type ``  
+
+#### 2.删除字段  
+
+``alert table table_name DROP col_name``  
+
+### 4.增补约束  
+
+#### 1.增加主键约束  
+
+``alert table table_name ADD CONSTRAINT con_name PRIMARY KEY(col_name)``  
+
+con_name表示约束的名称,形式为：约束_ 表名 _列 ``ck _ games _gno``  
+
+#### 2.添加外键约束  
+
+``alert table table_name ADD CONSTRAINT con_name FOREIGN KEY(col_name) REFERENCES m_table(m_col)``    
+
+#### 3.添加检查约束  
+
+``alert table table_name ADD CONSTRAINT con_name CHECK(col_name>0)``    
+
+#### 4.添加默认值  
+
+``alert table table_name alert col_name set default value ``  
+
+ #### 5.添加自增列  
+
+``alert table table_name MODIFY COLUMN col_name int not null AUTO_INCREMENT primary key``  
+
+### 5.删除数据表
+
+### 1.删除无关联数据表
+
+``DROP table table_name,table_second``  
+
+### 2.删除有关联数据表  
+
+删除有关联的数据表需要先解除关联关系，再删除  
+
+1. 解除关联关系  
+
+``alert table table_name DROP FOREIGN KEY con_name``  
+
+2. 删除表  
+
+``DROP table table_name``  
 
 
 
@@ -101,6 +155,4 @@
 
 
 
-
-
-(看到为列添加约束，loading）
+(看到_插入数据_，loading）
