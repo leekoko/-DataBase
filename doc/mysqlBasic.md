@@ -19,6 +19,10 @@
 4. 文本：text理论无穷  
 5. 二进制：bit    
 
+类型的应用：
+
+![p5](../img/p5.png)  
+
 ### 4.数据库设计步骤  
 
 #### 1.数据分析    
@@ -41,8 +45,62 @@
 
 #### 3.详细设计      
 
+### 5.约束    
+
+保证数据的正确  
+
+#### 1.主键约束    
+
+保证实体的完整性，该列不会出现重复值，空值  
+
+``create table users(user_qq varchar(20) not null primary key)``  
+
+#### 2.外键约束  
+
+保证引用完整性  
+
+引用其他表的列：``references users(user_qq)``,引用users表的user_qq列  
+
+#### 3.检查约束  
+
+保证域的完整性：``gno int not null CHECK(gno>0)``  
+
+#### 4.默认约束  
+
+保证域完整性，给一个缺省值``user_sex char(2) not null default '男'``    
+
+（自增列：保证实体完整性``gno int not null AUTO_NCREMENT``）  
+
+### 6.数据表管理  
+
+#### 1.查看数据表的基本结构    
+
+``desc users``  
+
+#### 2.查看表的详细结构  
+
+``show create table table_name``可以查看创建表的sql语句  
+
+### 7.修改数据表  
+
+#### 1.修改表名  
+
+``alert tabel oldName rename to newName``  
+
+#### 2.修改字段名  
+
+``alert table table_name change old_name new_name new_type``  
+
+  
+
+  
 
 
 
 
-(看到为列添加约束，loading)
+
+
+
+
+
+(看到为列添加约束，loading）
