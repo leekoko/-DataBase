@@ -133,11 +133,11 @@ con_name表示约束的名称,形式为：约束_ 表名 _列 ``ck _ games _gno`
 
 ### 5.删除数据表
 
-### 1.删除无关联数据表
+#### 1.删除无关联数据表  
 
 ``DROP table table_name,table_second``  
 
-### 2.删除有关联数据表  
+#### 2.删除有关联数据表  
 
 删除有关联的数据表需要先解除关联关系，再删除  
 
@@ -148,6 +148,68 @@ con_name表示约束的名称,形式为：约束_ 表名 _列 ``ck _ games _gno`
 2. 删除表  
 
 ``DROP table table_name``  
+
+## 7.数据管理  
+
+### 1.插入数据  
+
+1. 所有列都插入值  
+
+``insert into table_name values ('列1','列2','列3')``  
+
+数值类型的值不需要单引号，into可以省略  
+
+如果该列要用默认值，就写成default  
+
+2. 为特定列插入值  
+
+``insert into table_name (col1,col2,col3) values (v1,v2,v3)``  
+
+3. 一次性插入多条数据  
+
+``insert into table_name (col1,col2,col3) values (v1,v2,v3),(v4,v5,v6)``  
+
+### 2.修改数据  
+
+1. 修改所有的值  
+
+``update table_name set col_name='修改的值'``  
+
+把所有的分数增加100分  
+
+``update table_name set score=score+100``  
+
+2. 修改特定数据  
+
+``update table_name set col_name='修改的值' where col_name='指定的列'``  
+
+### 3.删除数据  
+
+1. 删除指定的信息  
+
+``delete from table_name where col_name='指定的内容'``  
+
+from可以省略  
+
+2. truncate table清空数据  
+
+``truncate table tabel_name``  
+
+truncate不可以指定范围，只能清空  
+
+## 8.数据查询  
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
