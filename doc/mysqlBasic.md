@@ -199,13 +199,15 @@ truncate不可以指定范围，只能清空
 
 ## 8.数据查询  
 
-### 1.select语句  
+### 1.select限制    
 
-1. 查询所有行列  
+select语句的执行顺序：查询列-from 数据源-where筛选-group by分组-聚合统计-having再次筛选-order by排序  
+
+#### 1.查询所有行列  
 
 ``select * from table_name``  
 
-2. 查询部分列    
+#### 2.查询部分列    
 
 ``select col_name1,col_name2 from table_name``  
 
@@ -213,17 +215,17 @@ truncate不可以指定范围，只能清空
 
 ``select col_name1 as 'new name1',col_name2 as 'new name2' from table_name``  
 
-3. 查询中消除重复行  
+#### 3.查询中消除重复行  
 
 ``select DISTINCT col_name from table_name``  
 
-4. 指定显示的范围  
+#### 4.指定显示的范围  
 
 ``select * from table_name LIMIT 2,3``  
 
 表示查询第3，4，5三条数据，脚标从2开始，当省略前面的2，表示从头开始显示三条数据  
 
-5. 添加普通条件where  
+#### 5.添加普通条件where  
 
 ``select * form table_name where col_name>10``  
 
@@ -233,7 +235,7 @@ truncate不可以指定范围，只能清空
 
 其他的逻辑运算符还有：AND,OR,NOT  
 
-6. 查询范围  
+#### 6.查询范围  
 
 - ``select * from table_name where clo_name1>=2500 AND col_name_1<=3000``  
 - 模糊查询：  ``select * from table_name where clo_name1 between 2500 and 3000``  
@@ -246,7 +248,7 @@ truncate不可以指定范围，只能清空
 
 ``select * from table_name where clo_name1 between '1991-01-01' and '2000-3-21'``  
 
-7. 模糊查询  
+#### 7.模糊查询  
 
 - 通配符：  
 
@@ -262,7 +264,7 @@ _任意字符
 
 如果查询非孙姓，在like前面加not  
 
-8. 查询控制信息  
+#### 8.查询控制信息  
 
 ``select * from table_name where col_name IS NULL``  
 
@@ -270,7 +272,7 @@ _任意字符
 
 ### 2.查询结果排序    
 
-1. 指定列排序  
+#### 1.指定列排序  
 
 确定排序依据，排序方式  
 
@@ -278,7 +280,7 @@ _任意字符
 
 asc升序为默认排序，可以不添加，还可以添加where限制  
 
-2.  多列进行排序  
+#### 2.多列进行排序  
 
 确定多个排序依据，排序方式，排序优先级  
 
@@ -286,7 +288,105 @@ asc升序为默认排序，可以不添加，还可以添加where限制
 
 挡在前面的列优先级更高  
 
+### 3.查询处理    
 
+#### 1.聚合函数  
+
+sum():总和  
+
+avg():平均值  
+
+min(),max():求最值，日期的话2017-01-01>2007-01-1,字母的话apple<bananer  
+
+count():计数  
+
+1. 聚合函数的使用：  
+
+``select count(col_name) from table_name``  
+
+可以添加别名，添加where条件限制：
+
+``select SUM(col_name) AS '总分' from table_name where col_name='限制条件'``  
+
+多个聚合函数的使用：
+
+``select SUM(col_name) AS '总分'，AVG(col_name2) AS '平均分',MAX(col_name2) AS '最高分' from table_name where col_name='限制条件'``  
+
+（只查询一个对象）  
+
+#### 2.结果集分组  
+
+分组就不止产生一条数据，而是每个小组产生一条数据  
+
+1. 使用方式:在最后再上group by col_name,以该列相同的名字进行分组  
+
+``select col_name AS '用户名'，SUM(col_name) AS '总分'，AVG(col_name2) AS '平均分',MAX(col_name2) AS '最高分' from table_name group by col_name``  
+
+（查询好几组对象）  
+
+再添加降序排序的话在后面添加ORDER BY AVG(score) DESC  
+
+2. 查询结果作为筛选条件HAVING  
+
+having是用来筛选聚合函数结果  
+
+``select col_name AS '用户名'，SUM(col_name) AS '总分'，AVG(col_name2) AS '平均分' from table_name group by col_name HAVING AVG(col_name)>4000``   
+
+### 4.连接查询  
+
+#### 1.多表查询：
+
+``select col_name AS '用户名'，SUM(col_name) AS '总分'，AVG(col_name2) AS '平均分' from table_1,table_2,table_3 where table1.col_name=tabel2.col_name AND table2.col_name=table3.col_name ``   
+
+form多个表，where中连接表之间的关系  
+
+#### 2.内连接改写：  
+
+from多个表就是内连接，还是隐式内连接  
+
+显式内连接就是把符号显示出来  
+
+``select col_name AS '用户名'，SUM(col_name) AS '总分'，AVG(col_name2) AS '平均分' from table_1 INNER JOIN table_2 ON table1.col_name=tabel2.col_name INNER JOIN table_3 ON table2.col_name=table3.col_name `` 
+
+还可以添加分组  
+
+#### 3.外连接 
+
+分为左外连接和右外连接两种，外连接两张表并不平等  
+
+基础表的数据必须全部出现，另一个表不存在就用null补，内连接没有数据内容，整条数据就不会显示    
+
+``select col_name form table1_name U LEFT/RIGHT OUTER JOIN table2_name ON U.col=table2.col``  
+
+这里的U就是设置别名  
+
+#### 4.子查询  
+
+1. IN子查询
+
+将查询的结果作为另一个查询的条件  
+
+``select * from table1_name where col_name IN (select col_name from table2.name where col2_name='限制的内容') ``  
+
+2.  Exist子查询  
+
+``select * from table1_name where EXIST (select * from table_name where col_name='限制条件')   ``  
+
+只有当条件符合的时候，才会执行父查询，相当于if   
+
+#### 5.联合查询  
+
+将两条查询语句联合起来，形成一条新的查询语句，将结果集纵连接在一起    
+
+``select * from table1_name where col_name='限制内容' UNION select * from table2_name where col_name IS NULL``   
+
+当我们使用select后面加字符串的话，查到的都是字符串，当使用union的时候，重复的内容不会显示    
+
+
+
+
+
+   
 
 
 
@@ -306,4 +406,6 @@ asc升序为默认排序，可以不添加，还可以添加where限制
 
 
 
-(看到_插入数据_，loading）
+
+
+(看到_MYSQL函数_，loading）
