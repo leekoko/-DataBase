@@ -199,9 +199,98 @@ truncate不可以指定范围，只能清空
 
 ## 8.数据查询  
 
+### 1.select语句  
+
+1. 查询所有行列  
+
+``select * from table_name``  
+
+2. 查询部分列    
+
+``select col_name1,col_name2 from table_name``  
+
+使用别名,as可以省略  
+
+``select col_name1 as 'new name1',col_name2 as 'new name2' from table_name``  
+
+3. 查询中消除重复行  
+
+``select DISTINCT col_name from table_name``  
+
+4. 指定显示的范围  
+
+``select * from table_name LIMIT 2,3``  
+
+表示查询第3，4，5三条数据，脚标从2开始，当省略前面的2，表示从头开始显示三条数据  
+
+5. 添加普通条件where  
+
+``select * form table_name where col_name>10``  
+
+多重条件:  
+
+``select * from table_name where clo_name1=1 AND col_name>4000``  
+
+其他的逻辑运算符还有：AND,OR,NOT  
+
+6. 查询范围  
+
+- ``select * from table_name where clo_name1>=2500 AND col_name_1<=3000``  
+- 模糊查询：  ``select * from table_name where clo_name1 between 2500 and 3000``  
+
+2500和3000不能颠倒  
+
+查询不在这个范围内，在between前面添加not  
+
+当要查询的范围为date日期的话：  
+
+``select * from table_name where clo_name1 between '1991-01-01' and '2000-3-21'``  
+
+7. 模糊查询  
+
+- 通配符：  
+
+_任意字符  
+
+%任意长度  
+
+[1-5]在范围1-5之内  
+
+[^1-5]不在1-5范围之内  
+
+- ``select * from table_name where col_name LIKE '孙%' ``  
+
+如果查询非孙姓，在like前面加not  
+
+8. 查询控制信息  
+
+``select * from table_name where col_name IS NULL``  
+
+查询非空就是在IS后面加NOT  
+
+### 2.查询结果排序    
+
+1. 指定列排序  
+
+确定排序依据，排序方式  
+
+``select * from table_name ORDER BY col_name ASC/DESC``
+
+asc升序为默认排序，可以不添加，还可以添加where限制  
+
+2.  多列进行排序  
+
+确定多个排序依据，排序方式，排序优先级  
+
+``select * from table_name ORDER BY col_name1 ASC,col_name2 DESC``  
+
+挡在前面的列优先级更高  
 
 
 
+
+
+  
 
 
 
