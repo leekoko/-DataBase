@@ -16,6 +16,6 @@
 
 # 专题  
 
-### 1.[sql简单查询](doc/simpleSelect.md)     
+### 1.[sql语法](doc/sql.md)     
 
-### 2.[sql高级查询](doc/seniorcSelect.md)  
+###   
