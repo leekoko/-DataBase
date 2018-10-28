@@ -381,13 +381,3 @@ from多个表就是内连接，还是隐式内连接
 ``select * from table1_name where col_name='限制内容' UNION select * from table2_name where col_name IS NULL``   
 
 当我们使用select后面加字符串的话，查到的都是字符串，当使用union的时候，重复的内容不会显示    
-
-
-
-
-
-   
-
-
-
-  
