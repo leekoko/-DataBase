@@ -14,7 +14,7 @@
 
 ###  2.[PL/SQL语句](doc/plsql.md)  
 
-### 3.[oracle操作](doc/oracle.md)  
+### 3.[oracle基本操作](doc/oracle.md)  
 
 
 
