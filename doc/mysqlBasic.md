@@ -1,17 +1,17 @@
 # MySql的基础  
 
-## 1.环境开启
+###1.环境开启
 
 1. 启动mysql服务  
 2. 使用navicat来登录mysql  
 
-## 2.基础语法
+### 2.基础语法
 
 1. 创建数据库：``create database databaseName;``  
 2. 删除数据库：``drop database databaseName;``  
 3. 创建数据表：``create table t3(a1 double, a2 float not null)``
 
-## 3.Mysql数据类型
+### 3.Mysql数据类型
 
 1. 整数，int  
 2. 小数，decimal(定点数)，float4，double8  
@@ -23,7 +23,7 @@
 
 ![p5](../img/p5.png)  
 
-## 4.数据库设计步骤
+### 4.数据库设计步骤
 
 #### 1.数据分析    
 
@@ -45,7 +45,7 @@
 
 #### 3.详细设计      
 
-## 5.约束  
+### 5.约束  
 
 保证数据的正确  
 
@@ -71,43 +71,43 @@
 
 （自增列：保证实体完整性``gno int not null AUTO_NCREMENT``）  
 
-## 6.数据表管理  
+### 6.数据表管理  
 
-### 1.查看数据表  
+#### 1.查看数据表  
 
-#### 1.查看数据表的基本结构    
+1. 查看数据表的基本结构    
 
-``desc users``  
+   ``desc users``  
 
-#### 2.查看表的详细结构  
+2. 查看表的详细结构  
 
-``show create table table_name``可以查看创建表的sql语句  
+   ``show create table table_name``可以查看创建表的sql语句  
 
-### 2.修改数据表  
+#### 2.修改数据表  
 
-#### 1.修改表名  
+1. 修改表名  
 
-``alert tabel oldName rename to newName``  
+   ``alert tabel oldName rename to newName``  
 
-#### 2.修改字段名  
+2. 修改字段名  
 
-``alert table table_name CHANGE old_name new_name new_type``  
+   ``alert table table_name CHANGE old_name new_name new_type``  
 
 #### 3.修改字段数据类型  
 
 ``alert table table_name MODIFY col_name new_type``  
 
-  ### 3.字段操作  
+#### 4.字段操作  
 
-#### 1.添加字段    
+1. 添加字段
 
-``alert table table_name ADD new_col_name new_type ``  
+   ``alert table table_name ADD new_col_name new_type ``  
 
-#### 2.删除字段  
+2. 删除字段  
 
-``alert table table_name DROP col_name``  
+   ``alert table table_name DROP col_name``  
 
-### 4.增补约束  
+### 7.增补约束  
 
 #### 1.增加主键约束  
 
@@ -149,9 +149,9 @@ con_name表示约束的名称,形式为：约束_ 表名 _列 ``ck _ games _gno`
 
 ``DROP table table_name``  
 
-## 7.数据管理  
+### 6.数据管理  
 
-### 1.插入数据  
+#### 1.插入数据  
 
 1. 所有列都插入值  
 
@@ -169,7 +169,7 @@ con_name表示约束的名称,形式为：约束_ 表名 _列 ``ck _ games _gno`
 
 ``insert into table_name (col1,col2,col3) values (v1,v2,v3),(v4,v5,v6)``  
 
-### 2.修改数据  
+#### 2.修改数据  
 
 1. 修改所有的值  
 
@@ -183,7 +183,7 @@ con_name表示约束的名称,形式为：约束_ 表名 _列 ``ck _ games _gno`
 
 ``update table_name set col_name='修改的值' where col_name='指定的列'``  
 
-### 3.删除数据  
+#### 3.删除数据  
 
 1. 删除指定的信息  
 
@@ -197,35 +197,35 @@ from可以省略
 
 truncate不可以指定范围，只能清空  
 
-## 8.数据查询  
+### 8.数据查询  
 
-### 1.select限制    
+#### 1.select限制    
 
 select语句的执行顺序：查询列-from 数据源-where筛选-group by分组-聚合统计-having再次筛选-order by排序  
 
-#### 1.查询所有行列  
+1. 查询所有行列  
 
-``select * from table_name``  
+   ``select * from table_name``  
 
-#### 2.查询部分列    
+2. 查询部分列    
 
-``select col_name1,col_name2 from table_name``  
+   ``select col_name1,col_name2 from table_name``  
 
-使用别名,as可以省略  
+   使用别名,as可以省略  
 
-``select col_name1 as 'new name1',col_name2 as 'new name2' from table_name``  
+   ``select col_name1 as 'new name1',col_name2 as 'new name2' from table_name``  
 
-#### 3.查询中消除重复行  
+#### 2.查询中消除重复行  
 
 ``select DISTINCT col_name from table_name``  
 
-#### 4.指定显示的范围  
+#### 3.指定显示的范围  
 
 ``select * from table_name LIMIT 2,3``  
 
 表示查询第3，4，5三条数据，脚标从2开始，当省略前面的2，表示从头开始显示三条数据  
 
-#### 5.添加普通条件where  
+#### 4.添加普通条件where  
 
 ``select * form table_name where col_name>10``  
 
@@ -235,7 +235,7 @@ select语句的执行顺序：查询列-from 数据源-where筛选-group by分�
 
 其他的逻辑运算符还有：AND,OR,NOT  
 
-#### 6.查询范围  
+#### 5.查询范围  
 
 - ``select * from table_name where clo_name1>=2500 AND col_name_1<=3000``  
 - 模糊查询：  ``select * from table_name where clo_name1 between 2500 and 3000``  
@@ -248,7 +248,7 @@ select语句的执行顺序：查询列-from 数据源-where筛选-group by分�
 
 ``select * from table_name where clo_name1 between '1991-01-01' and '2000-3-21'``  
 
-#### 7.模糊查询  
+#### 6.模糊查询  
 
 - 通配符：  
 
@@ -264,13 +264,13 @@ _任意字符
 
 如果查询非孙姓，在like前面加not  
 
-#### 8.查询控制信息  
+#### 7.查询控制信息  
 
 ``select * from table_name where col_name IS NULL``  
 
 查询非空就是在IS后面加NOT  
 
-### 2.查询结果排序    
+### 9.查询结果排序    
 
 #### 1.指定列排序  
 
@@ -288,7 +288,7 @@ asc升序为默认排序，可以不添加，还可以添加where限制
 
 挡在前面的列优先级更高  
 
-### 3.查询处理    
+### 10.查询处理    
 
 #### 1.聚合函数  
 
@@ -332,7 +332,7 @@ having是用来筛选聚合函数结果
 
 ``select col_name AS '用户名'，SUM(col_name) AS '总分'，AVG(col_name2) AS '平均分' from table_name group by col_name HAVING AVG(col_name)>4000``   
 
-### 4.连接查询  
+### 11.连接查询  
 
 #### 1.多表查询：
 
