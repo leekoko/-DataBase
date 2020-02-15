@@ -6,6 +6,8 @@
 
 ### 3.[oracle基本操作](doc/oracle.md)  
 
+### 4.[《高性能Mysql》读书笔记](doc/HighPerformanceMysql/README.md)  
+
 ---
 
 # 专题  
